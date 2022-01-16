@@ -4,4 +4,4 @@
 
 ## useful xpaths:
 - crypto.com:
-  `//span[@class="base"][text()="<CURR>"]/ancestor-or-self::tr[1]/td[2]/div')`
+  `//span[@class="base"][text()="<CURR>"]/ancestor-or-self::tr[1]/td[2]/div`

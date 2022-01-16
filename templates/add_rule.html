@@ -5,20 +5,21 @@
     <div class="row">
         <div class="col-2"></div>
         <div class="col-8">
-            <form>
-                <input type="hidden" name="name" value="BTC"/>
-                <input type="hidden" name="exchange" value="crypto.com"/>
+            <form method="post" action="{% url 'add_rule_submit' %}">
+                {% csrf_token %}
+                <input type="hidden" name="shorthand" value="{{ coin }}"/>
+                <input type="hidden" name="exchange" value="{{ exchange }}"/>
                 <div class="form-group row">
-                    <label class="col-2 col-form-label" for="name">Coin:</label>
+                    <label class="col-2 col-form-label" for="shorthand">Coin:</label>
                     <div class="col-10">
-                        <span class="form-control">BTC</span>
+                        <span class="form-control">{{ coin }}</span>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-2 col-form-label" for="name">Exchange:</label>
                     <div class="col-10">
-                        <span class="form-control">Crypto.com</span>
+                        <span class="form-control">{{ exchange }}</span>
                     </div>
                 </div>
 
@@ -45,7 +46,7 @@
                 <div class="form-group row">
                     <label class="col-2 col-form-label" for="value">Value:</label>
                     <div class="col-10">
-                        <textarea required rows="5" class="form-control text-monospace" name="value" id="value" placeholder="Enter xpath or new shorthand"></textarea>
+                        <textarea rows="5" class="form-control text-monospace" name="value" id="value" placeholder="Enter xpath or new shorthand"></textarea>
                     </div>
                 </div>
 

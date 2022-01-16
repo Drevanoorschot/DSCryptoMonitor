@@ -5,7 +5,8 @@
     <div class="row">
         <div class="col-2"></div>
         <div class="col-8">
-            <form>
+            <form method="post">
+                {% csrf_token %}
                 <div class="form-group row">
                     <label class="col-2 col-form-label" for="name">Name:</label>
                     <div class="col-10">
@@ -21,16 +22,16 @@
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-2 col-form-label" for="market_page">Market page:</label>
+                    <label class="col-2 col-form-label" for="markets_page">Markets page:</label>
                     <div class="col-10">
-                        <input type="url" name="market_page" class="form-control" id="market_page" placeholder="Enter market page URL" required>
+                        <input type="url" name="markets_page" class="form-control" id="markets_page" placeholder="Enter markets page URL" required>
                     </div>
                 </div>
 
                  <div class="form-group row">
                     <label class="col-2 col-form-label" for="xpath">Base xpath:</label>
                     <div class="col-10">
-                        <textarea required rows="5" class="form-control text-monospace" name="base_xpath" id="xpath" placeholder="Enter xpath"></textarea>
+                        <textarea required rows="5" class="form-control text-monospace" name="xpath" id="xpath" placeholder="Enter xpath"></textarea>
                     </div>
                 </div>
                 <p>

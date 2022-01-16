@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from coins.views import dashboard, add_exchange, add_coin, issues, rules, add_rule
+from coins.views import dashboard, add_exchange, add_coin, issues, rules, add_rule_form, add_rule_submit
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,5 +25,6 @@ urlpatterns = [
     path('add_coin', add_coin, name='add_coin'),
     path('issues', issues, name='issues'),
     path('rules', rules, name='rules'),
-    path('add_rule', add_rule, name='add_rule')
+    path('add_rule/<str:coin>_<str:exchange>', add_rule_form, name='add_rule_form'),
+    path('add_rule', add_rule_submit, name='add_rule_submit')
 ]
