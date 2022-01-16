@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Issues{% endblock %}
+{% block content %}
+    <table class="table">
+        <thead class="thead-dark" style="white-space: nowrap">
+        <tr>
+            <th>Coin</th>
+            <th>Exchange</th>
+            <th>Add Rule</th>
+            <th>Stack Trace</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>BTC</td>
+            <td>Crypto.com</td>
+            <td><button class="btn btn-warning"><i class="fas fa-bolt"></i></button></td>
+            <td class="text-monospace">
+                Traceback (most recent call last):  File &quot;&lt;input&gt;&quot;, line 1, in &lt;module&gt;  File &quot;/home/dre/Projects/DSCryptoMonitor/venv/lib/python3.9/site-packages/selenium/webdriver/remote/webdriver.py&quot;, line 1244, in find_element  return self.execute(Command.FIND_ELEMENT, {  File &quot;/home/dre/Projects/DSCryptoMonitor/venv/lib/python3.9/site-packages/selenium/webdriver/remote/webdriver.py&quot;, line 424, in execute  self.error_handler.check_response(response)  File &quot;/home/dre/Projects/DSCryptoMonitor/venv/lib/python3.9/site-packages/selenium/webdriver/remote/errorhandler.py&quot;, line 247, in check_response  raise exception_class(message, screen, stacktrace) selenium.common.exceptions.InvalidSelectorException: Message: Given xpath expression &quot;//span[@class=&quot;base&quot;][text()=&quot;CRO&quot;]/ancestor-or-self::&quot; is invalid: SyntaxError: The expression is not a legal expression. Stacktrace: WebDriverError@chrome://marionette/content/error.js:175:5 InvalidSelectorError@chrome://marionette/content/error.js:335:5 find_@chrome://marionette/content/element.js:358:11 element.find/&lt;/findElements&lt;@chrome://marionette/content/element.js:312:24 evalFn@chrome://marionette/content/sync.js:150:7 PollPromise/&lt;@chrome://marionette/content/sync.js:170:5 PollPromise@chrome://marionette/content/sync.js:141:10 element.find/&lt;@chrome://marionette/content/element.js:310:24 element.find@chrome://marionette/content/element.js:309:10 findElementContent@chrome://marionette/content/listener.js:1260:26 dispatch/&lt;/req&lt;@chrome://marionette/content/listener.js:525:17 dispatch/&lt;@chrome://marionette/content/listener.js:520:15
+            </td>
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}

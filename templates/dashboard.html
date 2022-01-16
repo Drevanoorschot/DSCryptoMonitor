@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-8">
+            <h3>Favourable Arbitrages</h3>
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Coin</th>
+                    <th>Buy</th>
+                    <th>Sell</th>
+                    <th>%</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>BTC</td>
+                    <td>Crypto.com ($1000)</td>
+                    <td>Binance.com ($1500)</td>
+                    <td class="font-weight-bold text-success">50%</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>BTC</td>
+                    <td>Crypto.com ($1000)</td>
+                    <td>Binance.com ($1500)</td>
+                    <td class="font-weight-bold text-success">50%</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>BTC</td>
+                    <td>Crypto.com ($1000)</td>
+                    <td>Binance.com ($1500)</td>
+                    <td class="font-weight-bold text-success">50%</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>BTC</td>
+                    <td>Crypto.com ($1000)</td>
+                    <td>Binance.com ($1500)</td>
+                    <td class="font-weight-bold text-success">50%</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>BTC</td>
+                    <td>Crypto.com ($1000)</td>
+                    <td>Binance.com ($1500)</td>
+                    <td class="font-weight-bold text-success">50%</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-4">
+            <h3>Registered Coins</h3>
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Shorthand</th>
+                    <th>Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>BTC</td>
+                    <td>Bitcoin</td>
+                </tr>
+                <tr>
+                    <td>BTC</td>
+                    <td>Bitcoin</td>
+                </tr>
+                <tr>
+                    <td>BTC</td>
+                    <td>Bitcoin</td>
+                </tr>
+                <tr>
+                    <td>BTC</td>
+                    <td>Bitcoin</td>
+                </tr>
+                <tr>
+                    <td>BTC</td>
+                    <td>Bitcoin</td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="col-12">
+            <h3>Registered Exchanges</h3>
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Website</th>
+                    <th>Market page</th>
+                    <th>Base xpath</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Crypto.com</td>
+                    <td>
+                        <button class="btn btn-warning"><i class="fas fa-external-link-alt"></i></button>
+                    </td>
+                    <td><a href="https://crypto.com/exchange/markets">https://crypto.com/exchange/markets</a></td>
+                    <td class="text-monospace text-wrap">//span[@class="base"][text()="&lt;CURR&gt;"]/ancestor-or-self::tr[1]/td[2]/div')</td>
+                </tr>
+                <tr>
+                    <td>Crypto.com</td>
+                    <td>
+                        <button class="btn btn-warning"><i class="fas fa-external-link-alt"></i></button>
+                    </td>
+                    <td><a href="https://crypto.com/exchange/markets">https://crypto.com/exchange/markets</a></td>
+                    <td class="text-monospace text-wrap">//span[@class="base"][text()="&lt;CURR&gt;"]/ancestor-or-self::tr[1]/td[2]/div')</td>
+                </tr><tr>
+                    <td>Crypto.com</td>
+                    <td>
+                        <button class="btn btn-warning"><i class="fas fa-external-link-alt"></i></button>
+                    </td>
+                    <td><a href="https://crypto.com/exchange/markets">https://crypto.com/exchange/markets</a></td>
+                    <td class="text-monospace text-wrap">//span[@class="base"][text()="&lt;CURR&gt;"]/ancestor-or-self::tr[1]/td[2]/div')</td>
+                </tr><tr>
+                    <td>Crypto.com</td>
+                    <td>
+                        <button class="btn btn-warning"><i class="fas fa-external-link-alt"></i></button>
+                    </td>
+                    <td><a href="https://crypto.com/exchange/markets">https://crypto.com/exchange/markets</a></td>
+                    <td class="text-monospace text-wrap">//span[@class="base"][text()="&lt;CURR&gt;"]/ancestor-or-self::tr[1]/td[2]/div')</td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

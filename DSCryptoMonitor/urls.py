@@ -16,9 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from coins.views import dashboard
+from coins.views import dashboard, add_exchange, add_coin, issues, rules, add_rule
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', dashboard, name='dashboard')
+    path('', dashboard, name='dashboard'),
+    path('add_exchange', add_exchange, name='add_exchange'),
+    path('add_coin', add_coin, name='add_coin'),
+    path('issues', issues, name='issues'),
+    path('rules', rules, name='rules'),
+    path('add_rule', add_rule, name='add_rule')
 ]

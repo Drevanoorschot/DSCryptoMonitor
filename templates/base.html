@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Crypto Monitor - {% block title %} {% endblock %}</title>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.11.3/sorting/date-eu.js"></script>
+    <script src="https://kit.fontawesome.com/6b54c70830.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/fontawesome.min.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-warning">
+    <a class="navbar-brand" href="{% url 'dashboard' %}"><i class="fas fa-tachometer-alt"></i> Crypto Monitor</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'dashboard' %}"><i class="fas fa-chart-bar"></i> Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'add_exchange' %}"><i class="fas fa-exchange-alt"></i> Add Exchange</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'add_coin' %}"><i class="fas fa-coins"></i> Add Coin</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'issues' %}"><i class="fas fa-exclamation-triangle"></i> Issues <span class="badge badge-danger">1</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'rules' %}"><i class="fas fa-bolt"></i> Exception Rules</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+<div class="pt-3"></div>
+<div class="container">
+{% block content %} {% endblock %}
+</div>
+
+</body>
+</html>
