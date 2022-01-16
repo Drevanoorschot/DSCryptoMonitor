@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Add Coin{% endblock %}
 {% block content %}
-<table class="table">
+    <table class="table">
         <thead class="thead-dark">
         <tr>
             <th>Coin</th>
@@ -11,12 +11,14 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>BTC</td>
-            <td>Crypto.com</td>
-            <td>NTD</td>
-            <td class="text-monospace"></td>
-        </tr>
+        {% for r in rules %}
+            <tr>
+                <td>{{ r.forCoin.shorthand }}</td>
+                <td>{{ r.forExchange.name }}</td>
+                <td>{{ r.kind }}</td>
+                <td>{{ r.value }}</td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
 {% endblock %}

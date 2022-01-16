@@ -17,7 +17,9 @@ def issues(request):
 
 
 def rules(request):
-    return render(request, 'rules.html')
+    return render(request, 'rules.html', context={
+        'rules': ExceptionRule.objects.all()
+    })
 
 
 @require_http_methods(["GET", "POST"])
