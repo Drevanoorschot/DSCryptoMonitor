@@ -39,8 +39,11 @@
                 <a class="nav-link" href="{% url 'add_coin' %}"><i class="fas fa-coins"></i> Add Coin</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'issues' %}"><i class="fas fa-exclamation-triangle"></i> Issues <span
-                        class="badge badge-danger">1</span></a>
+                <a class="nav-link" href="{% url 'issues' %}"><i class="fas fa-exclamation-triangle"></i> Issues
+                    {% if issue_count > 0 %}
+                        <span class="badge badge-danger">{{ issue_count }}</span>
+                    {% endif %}
+                </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'rules' %}"><i class="fas fa-bolt"></i> Exception Rules</a>

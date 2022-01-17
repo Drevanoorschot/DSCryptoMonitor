@@ -12,6 +12,7 @@ class Exchange(models.Model):
     website = models.URLField(unique=True)
     markets_page = models.URLField(unique=True)
     base_xpath = models.CharField(max_length=1000)
+    wait_xpath = models.CharField(max_length=1000)
 
 
 class ExceptionRule(models.Model):

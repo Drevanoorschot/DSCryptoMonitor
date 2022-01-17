@@ -6,14 +6,22 @@ from django.urls import reverse
 from django.views.decorators.http import require_http_methods
 
 from coins.models import Exchange, Coin, ExceptionRule
+from scraper.mongo import MongoOperator
+from scraper.scraper import Scraper
 
 
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    return render(request, 'dashboard.html', context={
+        'exchanges': Exchange.objects.all(),
+        'coins': Coin.objects.all(),
+        'trades': MongoOperator().get_latest_record()['record']['trades'][:5]
+    })
 
 
 def issues(request):
-    return render(request, 'issues.html')
+    return render(request, 'issues.html', context={
+        'issues': MongoOperator().get_latest_record()['record']['issues']
+    })
 
 
 def rules(request):
@@ -25,13 +33,14 @@ def rules(request):
 @require_http_methods(["GET", "POST"])
 def add_exchange(request):
     if request.method == "GET":
-        return render(request, 'add_exchange.html')
+        return render(request, 'add_exchange.html', context={"placeholder": Scraper.COIN_PLACEHOLDER})
     elif request.method == "POST":
         e = Exchange.objects.create(
             name=request.POST['name'],
             website=request.POST['website'],
             markets_page=request.POST['markets_page'],
-            base_xpath=request.POST['xpath']
+            base_xpath=request.POST['xpath'],
+            wait_xpath=request.POST['wait_xpath']
         )
         messages.success(request, f"Exchange \"{e.name}\" successfully added")
         return redirect(reverse('dashboard'))

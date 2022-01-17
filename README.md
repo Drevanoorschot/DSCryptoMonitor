@@ -1,7 +1,7 @@
 # DSCryptoMonitor
 
-- Requires [gecko driver](https://github.com/mozilla/geckodriver/releases) to be installed on your PATH
+- Requires [chrome driver](https://chromedriver.chromium.org/home) to be installed on your PATH
 
 ## useful xpaths:
 - crypto.com:
-  `//span[@class="base"][text()="<CURR>"]/ancestor-or-self::tr[1]/td[2]/div`
+  `//span[@class="base"][text()="<COIN_PLACEHOLDER>"]/ancestor-or-self::tr[1]/td[2]/div`

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load mathfilters %}
 {% block title %}Dashboard{% endblock %}
 {% block content %}
     <div class="row">
@@ -11,45 +12,19 @@
                     <th>Coin</th>
                     <th>Buy</th>
                     <th>Sell</th>
-                    <th>%</th>
+                    <th>% gain</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>BTC</td>
-                    <td>Crypto.com ($1000)</td>
-                    <td>Binance.com ($1500)</td>
-                    <td class="font-weight-bold text-success">50%</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>BTC</td>
-                    <td>Crypto.com ($1000)</td>
-                    <td>Binance.com ($1500)</td>
-                    <td class="font-weight-bold text-success">50%</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>BTC</td>
-                    <td>Crypto.com ($1000)</td>
-                    <td>Binance.com ($1500)</td>
-                    <td class="font-weight-bold text-success">50%</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>BTC</td>
-                    <td>Crypto.com ($1000)</td>
-                    <td>Binance.com ($1500)</td>
-                    <td class="font-weight-bold text-success">50%</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>BTC</td>
-                    <td>Crypto.com ($1000)</td>
-                    <td>Binance.com ($1500)</td>
-                    <td class="font-weight-bold text-success">50%</td>
-                </tr>
+                {% for t in trades %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ t.coin }}</td>
+                        <td>{{ t.buy.exchange }} (${{ t.buy.value }})</td>
+                        <td>{{ t.sell.exchange }} (${{ t.sell.value }})</td>
+                        <td class="font-weight-bold text-success">{{ t.gain|mul:100|floatformat:3 }}%</td>
+                    </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </div>
@@ -63,27 +38,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>BTC</td>
-                    <td>Bitcoin</td>
-                </tr>
-                <tr>
-                    <td>BTC</td>
-                    <td>Bitcoin</td>
-                </tr>
-                <tr>
-                    <td>BTC</td>
-                    <td>Bitcoin</td>
-                </tr>
-                <tr>
-                    <td>BTC</td>
-                    <td>Bitcoin</td>
-                </tr>
-                <tr>
-                    <td>BTC</td>
-                    <td>Bitcoin</td>
-                </tr>
-
+                {% for c in coins %}
+                    <tr>
+                        <td>{{ c.shorthand }}</td>
+                        <td>{{ c.name }}</td>
+                    </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </div>
@@ -96,40 +56,22 @@
                     <th>Website</th>
                     <th>Market page</th>
                     <th>Base xpath</th>
+                    <th>Wait xpath</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Crypto.com</td>
-                    <td>
-                        <button class="btn btn-warning"><i class="fas fa-external-link-alt"></i></button>
-                    </td>
-                    <td><a href="https://crypto.com/exchange/markets">https://crypto.com/exchange/markets</a></td>
-                    <td class="text-monospace text-wrap">//span[@class="base"][text()="&lt;CURR&gt;"]/ancestor-or-self::tr[1]/td[2]/div')</td>
-                </tr>
-                <tr>
-                    <td>Crypto.com</td>
-                    <td>
-                        <button class="btn btn-warning"><i class="fas fa-external-link-alt"></i></button>
-                    </td>
-                    <td><a href="https://crypto.com/exchange/markets">https://crypto.com/exchange/markets</a></td>
-                    <td class="text-monospace text-wrap">//span[@class="base"][text()="&lt;CURR&gt;"]/ancestor-or-self::tr[1]/td[2]/div')</td>
-                </tr><tr>
-                    <td>Crypto.com</td>
-                    <td>
-                        <button class="btn btn-warning"><i class="fas fa-external-link-alt"></i></button>
-                    </td>
-                    <td><a href="https://crypto.com/exchange/markets">https://crypto.com/exchange/markets</a></td>
-                    <td class="text-monospace text-wrap">//span[@class="base"][text()="&lt;CURR&gt;"]/ancestor-or-self::tr[1]/td[2]/div')</td>
-                </tr><tr>
-                    <td>Crypto.com</td>
-                    <td>
-                        <button class="btn btn-warning"><i class="fas fa-external-link-alt"></i></button>
-                    </td>
-                    <td><a href="https://crypto.com/exchange/markets">https://crypto.com/exchange/markets</a></td>
-                    <td class="text-monospace text-wrap">//span[@class="base"][text()="&lt;CURR&gt;"]/ancestor-or-self::tr[1]/td[2]/div')</td>
-                </tr>
-
+                {% for e in exchanges %}
+                    <tr>
+                        <td>{{ e.name }}</td>
+                        <td>
+                            <button onclick="window.location.href='{{ e.website }}'" class="btn btn-warning"><i
+                                    class="fas fa-external-link-alt"></i></button>
+                        </td>
+                        <td><a href="{{ e.markets_page }}">{{ e.markets_page }}</a></td>
+                        <td class="text-monospace text-wrap">{{ e.base_xpath }}</td>
+                        <td class="text-monospace text-wrap">{{ e.wait_xpath }}</td>
+                    </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </div>

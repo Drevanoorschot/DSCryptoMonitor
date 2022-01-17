@@ -31,16 +31,27 @@
                  <div class="form-group row">
                     <label class="col-2 col-form-label" for="xpath">Base xpath:</label>
                     <div class="col-10">
-                        <textarea required rows="5" class="form-control text-monospace" name="xpath" id="xpath" placeholder="Enter xpath"></textarea>
+                        <textarea required rows="5" class="form-control text-monospace" name="xpath" id="xpath" placeholder="Enter base xpath"></textarea>
                     </div>
                 </div>
                 <p>
                     <span class="font-weight-bold">N.B.</span>
                     The xpath should indicate a valid path to the USD value of the coin and should be universal.
                     As a placeholder for the shorthand notation any coin, the placeholder
-                    <span class="text-monospace">&lt;COIN_PLACEHOLDER&gt;</span> should be used.
+                    <span class="text-monospace">{{ placeholder }}</span> should be used.
                     The xpath should refer to the containing element, not point to the text (so don't use
                     <span class="text-monospace">.text()</span> on the end of the xpath).
+                </p>
+                <div class="form-group row">
+                    <label class="col-2 col-form-label" for="wait_xpath">Wait xpath:</label>
+                    <div class="col-10">
+                        <textarea required rows="5" class="form-control text-monospace" name="wait_xpath" id="wait_xpath" placeholder="Enter wait xpath"></textarea>
+                    </div>
+                </div>
+                <p>
+                    <span class="font-weight-bold">N.B.</span>
+                    Specify and element that can be used as a wait element for the page to be loaded.
+                    This is necessary for pages that load most content with JavaScript instead of page fetching.
                 </p>
                 <button type="submit" class="btn btn-warning"><i class="fas fa-plus"></i> Add Exchange</button>
             </form>
