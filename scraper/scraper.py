@@ -1,3 +1,5 @@
+import logging
+
 import re
 import traceback
 
@@ -9,6 +11,8 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from coins import models
 from scraper.dtos import DataSet, Exchange, Issue, Trade
+
+logger = logging.getLogger(__name__)
 
 
 class Scraper:
@@ -30,17 +34,21 @@ class Scraper:
         driver = webdriver.Chrome(chrome_options=options)
         for dbExchange in self.dB_exchanges:
             exchange = Exchange(dbExchange.name)
+            logger.info(f"Getting markets page for {dbExchange.name}...")
             driver.get(dbExchange.markets_page)
             try:
                 Scraper.wait_on_load(dbExchange, driver)
             except TimeoutException:
                 try:
+                    logger.info(
+                        f"Timeout loading markets page for {dbExchange.name}, deleting cookies and refreshing...")
                     driver.delete_all_cookies()
                     driver.refresh()
                     Scraper.wait_on_load(dbExchange, driver)
                 except TimeoutException:
                     self.dataset.issues.append(Issue("ANY", dbExchange.name, "timeout on wait xpath"))
                     continue
+            logger.info(f"Page loaded for {dbExchange.name}! checking coin values...")
             for dbCoin in self.dB_coins:
                 xpath = dbExchange.base_xpath
                 shorthand = dbCoin.shorthand
@@ -68,6 +76,7 @@ class Scraper:
                     issue = Issue(dbCoin.shorthand, dbExchange.name, traceback.format_exc())
                     self.dataset.issues.append(issue)
             self.dataset.exchanges.append(exchange)
+        logger.info(f"Scraping finished, closing webdriver...")
         driver.close()
 
     @staticmethod
@@ -84,10 +93,10 @@ class Scraper:
             raise ValueError(f"regex didn't match any floats in {val}")
 
     @staticmethod
-    def wait_on_load(dbExchange, driver):
+    def wait_on_load(exchange, driver):
         WebDriverWait(driver, 10).until(
             expected_conditions.presence_of_element_located(
-                (By.XPATH, dbExchange.wait_xpath)
+                (By.XPATH, exchange.wait_xpath)
             )
         )
 

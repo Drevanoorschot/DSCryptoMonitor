@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+    <span class="text-monospace">
+    {% for line in logs %}
+        {{ line }}<br>
+    {% endfor %}
+    </span>
+{% endblock %}

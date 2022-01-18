@@ -49,7 +49,14 @@
                 <a class="nav-link" href="{% url 'rules' %}"><i class="fas fa-bolt"></i> Exception Rules</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8081/db/cryptomonitor/records"><i class="fab fa-envira"></i> Mongo Dashboard</a>
+                <a class="nav-link" href="http://localhost:8081/db/cryptomonitor/records">
+                    <i class="fab fa-envira"></i> Mongo Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'view_logs' %}">
+                    <i class="fas fa-file-alt"></i> Logs
+                </a>
             </li>
         </ul>
     </div>

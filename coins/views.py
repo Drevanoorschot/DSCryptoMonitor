@@ -88,3 +88,9 @@ def add_rule_submit(request):
                      f" and exchange \"{rule.forExchange.name}\""
                      f" successfully added")
     return redirect(reverse('dashboard'))
+
+
+def view_logs(request):
+    return render(request, 'logs.html', context={
+        'logs': MongoOperator().get_latest_record()['record']['logs'].split("\n")
+    })

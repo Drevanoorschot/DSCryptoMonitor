@@ -1,4 +1,7 @@
 import datetime
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class DataSet:
@@ -8,14 +11,17 @@ class DataSet:
         self.issues: list[Issue] = []
 
     def convert_to_dict(self):
-        return {
-            'timestamp': datetime.datetime.utcnow().isoformat(),
-            'record': {
-                'exchanges': list(map(lambda e: e.convert_to_dict(), self.exchanges)),
-                'trades': list(map(lambda t: t.convert_to_dict(), self.trades)),
-                'issues': list(map(lambda i: i.convert_to_dict(), self.issues))
+        with open('scraper.log') as log:
+            log = "".join(log.readlines())
+            return {
+                'timestamp': datetime.datetime.utcnow().isoformat(),
+                'record': {
+                    'exchanges': list(map(lambda e: e.convert_to_dict(), self.exchanges)),
+                    'trades': list(map(lambda t: t.convert_to_dict(), self.trades)),
+                    'issues': list(map(lambda i: i.convert_to_dict(), self.issues)),
+                    'logs': log
+                }
             }
-        }
 
 
 class Exchange:
