@@ -26,21 +26,21 @@ class Scraper:
 
     def _web_scrape(self):
         options = Options()
-        options.add_argument("--headless")
-        options.add_argument("--no-sandbox")
-        options.add_argument("--disable-dev-shm-usage")
+        # options.add_argument("--headless")
         driver = webdriver.Chrome(chrome_options=options)
         for dbExchange in self.dB_exchanges:
             exchange = Exchange(dbExchange.name)
             driver.get(dbExchange.markets_page)
             try:
-                WebDriverWait(driver, 10).until(
-                    expected_conditions.presence_of_element_located(
-                        (By.XPATH, dbExchange.wait_xpath)
-                    )
-                )
+                Scraper.wait_on_load(dbExchange, driver)
             except TimeoutException:
-                self.dataset.issues.append(Issue("ANY", dbExchange.name, "timeout on wait xpath"))
+                try:
+                    driver.delete_all_cookies()
+                    driver.refresh()
+                    Scraper.wait_on_load(dbExchange, driver)
+                except TimeoutException:
+                    self.dataset.issues.append(Issue("ANY", dbExchange.name, "timeout on wait xpath"))
+                    continue
             for dbCoin in self.dB_coins:
                 xpath = dbExchange.base_xpath
                 shorthand = dbCoin.shorthand
@@ -82,6 +82,18 @@ class Scraper:
             return float(values[0])
         else:
             raise ValueError(f"regex didn't match any floats in {val}")
+
+    @staticmethod
+    def wait_on_load(dbExchange, driver):
+        WebDriverWait(driver, 10).until(
+            expected_conditions.presence_of_element_located(
+                (By.XPATH, dbExchange.wait_xpath)
+            )
+        )
+
+    @staticmethod
+    def hard_refresh(driver: webdriver.Chrome) -> None:
+        driver.execute_script("location.reload(true);")
 
     def _generate_trades(self):
         for dbCoin in self.dB_coins:
