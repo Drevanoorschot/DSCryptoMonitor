@@ -9,7 +9,7 @@ class DataSet:
 
     def convert_to_dict(self):
         return {
-            'timestamp': int(datetime.datetime.utcnow().timestamp()),
+            'timestamp': datetime.datetime.utcnow().isoformat(),
             'record': {
                 'exchanges': list(map(lambda e: e.convert_to_dict(), self.exchanges)),
                 'trades': list(map(lambda t: t.convert_to_dict(), self.trades)),
